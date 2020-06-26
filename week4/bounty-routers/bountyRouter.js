@@ -1,6 +1,6 @@
 const express = require('express');
 const bountyRouter = express.Router();
-const {v4:uuid} =require('uuid');
+const {v4:uuid} = require('uuid');
 
 // Data
 const bounties = [
