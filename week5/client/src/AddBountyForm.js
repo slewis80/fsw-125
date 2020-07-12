@@ -4,11 +4,12 @@ function AddBountyForm(props) {
     const initialInputs = {
         firstName: props.firstName || "",
         lastName: props.lastName || "",
-        living: true,
+        living: props.living || true,
         bountyAmount: props.bountyAmount || "",
         type: props.type || ""
     }
     const [inputs, setInputs] = useState(initialInputs)
+
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -16,9 +17,10 @@ function AddBountyForm(props) {
     }
 
     function handleSubmit(e) {
-        // e.preventDefault()
+        e.preventDefault()
         props.submit(inputs, props._id)
         setInputs(initialInputs)
+        props.fixToggle()
     }
 
     return(
@@ -40,6 +42,7 @@ function AddBountyForm(props) {
                 placeholder="Price" />
             <select name="type" onChange={handleChange}>
                 <option>
+                    Jedi/Sith?
                 </option>
                 <option name="type" 
                     value="Jedi">
@@ -50,7 +53,7 @@ function AddBountyForm(props) {
                         Sith
                 </option>
             </select>
-            <button>{props.buttonText}</button>
+            <button className="bountyButton" onClick={handleSubmit}>{props.buttonText}</button>
         </form>
     )
 }
